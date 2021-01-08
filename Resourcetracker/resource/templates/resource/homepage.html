@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% extends 'resource/base.html' %}
+<head>
+    <meta charset="UTF-8">
+    {% block style %}
+    <title>Home Page</title>
+    {% endblock %}
+</head>
+<body>
+    {% block nav %}
+    <ul class="navbar-nav navbar-right">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
+        </li>
+    </ul>
+    {% endblock %}
+    {% block body %}
+    <h1>Hello Home</h1>
+    {% endblock %}
+
+</body>
+</html>

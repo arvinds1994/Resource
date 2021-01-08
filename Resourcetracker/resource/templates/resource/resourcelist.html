@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% extends 'resource/base.html' %}
+<head>
+    <meta charset="UTF-8">
+    {% block style %}
+    <title>Home Page</title>
+    {% endblock %}
+</head>
+<body>
+    {% block nav %}
+    <ul class="navbar-nav navbar-right">
+        <li class="nav-item">
+            <h4>Hello {{uname}}</h4>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+        </li>
+    </ul>
+    {% endblock %}
+    {% block body %}
+    <div class="jumbotron1">
+        <h1>Resource List:</h1>
+        {% if res_list %}
+        <table>
+            <thead>
+            <th>Employee ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Project Name</th>
+            <th>Team Name</th>
+            <th>Added On</th>
+            </thead>
+            {% for res in res_list %}
+            <tr>
+                <td>{{res.employee_id}}</a></td>
+                <td>{{res.first_name}}</td>
+                <td>{{res.last_name}}</td>
+                <td>{{res.email_id}}</td>
+                <td>{{res.project_name}}</td>
+                <td>{{res.team_name}}</td>
+                <td>{{res.added_on}}</td>
+                <td><a href="{% url 'update' id=res.employee_id %}">Update</td>
+                <td><a href="{% url 'delete' id=res.employee_id %}">Delete</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <p>No Records Found!!!</p>
+        {% endif %}
+
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+
+            </span>
+        </div>
+    </div>
+    {% endblock %}
+
+</body>
+</html>

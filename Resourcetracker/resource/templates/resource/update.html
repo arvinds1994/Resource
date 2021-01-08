@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+{% extends 'resource/base.html' %}
+<head>
+    <meta charset="UTF-8">
+    {% block style %}
+    <title>Home Page</title>
+    {% endblock %}
+</head>
+<body>
+    {% block nav %}
+    <ul class="navbar-nav navbar-right">
+        <li class="nav-item">
+            <h4>Hello {{uname}}</h4>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+        </li>
+    </ul>
+    {% endblock %}
+    {% block body %}
+    <div class="jumbotron1">
+        <h1>Resource Detail:</h1>
+        {% if res %}
+        <form method="post" action="">
+        <table>
+            <tr>
+                <td>Employee ID</td>
+                <td><input type="text" name="empid" value="{{res.employee_id}}"></td>
+            </tr>
+            <tr>
+                <td>First Name</td>
+                <td><input type="text" name="fname" value="{{res.first_name}}"></td>
+            </tr>
+            <tr>
+                <td>Last Name</td>
+                <td><input type="text" name="lname" value="{{res.last_name}}"></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="email" name="email" value="{{res.email_id}}"></td>
+            </tr>
+            <tr>
+                <td>Project Name</td>
+                <td><input type="text" name="pname" value="{{res.project_name}}"></td>
+            </tr>
+            <tr>
+                <td>Team Name</td>
+                <td><input type="text" name="tname" value="{{res.team_name}}"></td>
+            </tr>
+        </table>
+            {% csrf_token %}
+            <input type="submit" name="submit" value="Update">
+        </form>
+
+        {% else %}
+        <p>No Records Found!!!</p>
+        {% endif %}
+    </div>
+    {% endblock %}
+
+</body>
+</html>

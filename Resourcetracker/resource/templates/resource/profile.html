@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% extends 'resource/base.html' %}
+<head>
+    <meta charset="UTF-8">
+    {% block style %}
+    <title>Home Page</title>
+    {% endblock %}
+</head>
+<body>
+    {% block nav %}
+    <ul class="navbar-nav navbar-right">
+        <li class="nav-item">
+            <h4>Hello {{uname}}</h4>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+        </li>
+    </ul>
+    {% endblock %}
+    {% block body %}
+    <table>
+        <thead>
+        <th><a class="btn btn-primary" href="{% url 'addresource' %}" role="button">Add New Resource</a></th>
+        <th><a class="btn btn-primary" href="{% url 'resourcelist' %}" role="button">View Resources</a></th>
+        </thead>
+    </table>
+    {% endblock %}
+
+</body>
+</html>
