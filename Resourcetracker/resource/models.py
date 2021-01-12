@@ -10,6 +10,7 @@ class Resource(models.Model):
     project_name = models.CharField(max_length=30)
     team_name = models.CharField(max_length=30)
     added_on = models.DateField(auto_now=True)
+    assigned_work = models.TextField(default='', null=True)
 
     def __str__(self):
         return self.employee_id

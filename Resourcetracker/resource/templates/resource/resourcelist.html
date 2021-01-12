@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 {% extends 'resource/base.html' %}
+{% load static %}
 <head>
     <meta charset="UTF-8">
     {% block style %}
-    <title>Home Page</title>
+    <link rel="stylesheet" href="{% static 'resource/css/resourcelist.css' %}">
+    <title>Resource Details</title>
     {% endblock %}
 </head>
 <body>
+    {% block div %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+    </li>
+    {% endblock %}
     {% block nav %}
     <ul class="navbar-nav navbar-right">
         <li class="nav-item">
@@ -29,7 +36,8 @@
             <th>Email</th>
             <th>Project Name</th>
             <th>Team Name</th>
-            <th>Added On</th>
+            <th>Added On/Last Updated</th>
+            <th>Assigned Work</th>
             </thead>
             {% for res in res_list %}
             <tr>
@@ -40,6 +48,7 @@
                 <td>{{res.project_name}}</td>
                 <td>{{res.team_name}}</td>
                 <td>{{res.added_on}}</td>
+                <td>{{res.assigned_work}}</td>
                 <td><a href="{% url 'update' id=res.employee_id %}">Update</td>
                 <td><a href="{% url 'delete' id=res.employee_id %}">Delete</td>
             </tr>

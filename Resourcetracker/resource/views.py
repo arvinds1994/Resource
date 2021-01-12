@@ -5,7 +5,10 @@ from django.contrib.auth import authenticate, login, logout
 from .models import Resource
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 # Create your views here.
+from django.conf.global_settings import EMAIL_HOST_USER
+
 
 def home_view(request):
     uname = request.session['uname']
@@ -88,8 +91,13 @@ def update_view(request, id):
         resource.email_id = request.POST['email']
         resource.project_name = request.POST['pname']
         resource.team_name = request.POST['tname']
+        resource.assigned_work = request.POST['assignwork']
 
         resource.save()
+
+        recepient = request.POST['email']
+        work = request.POST['assignwork']
+        send_mail('New Work Assigned', work, EMAIL_HOST_USER, [recepient], fail_silently= False)
         return redirect('/resourcelist')
 
     return render(request, 'resource/update.html',{'res': resource})

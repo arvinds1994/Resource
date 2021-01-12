@@ -1,0 +1,19 @@
+.jumbotron1{
+    background: white;
+    border-style: solid;
+    text-align: center;
+}
+table {
+    width: 100%;
+}
+th {
+    height: 70px;
+    background-color: #4CAF50;
+    color: white;
+}
+table, th, td {
+    border: 1px solid black;
+}
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
